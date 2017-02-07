@@ -1,0 +1,19 @@
+@import "materialize";
+@import "materialize/extras/nouislider";
+
+.mainlogo {
+  display: block;
+  text-indent: -9999px;
+  width: 80%;
+  height: 40px;
+  background: url(mainlogo.svg);
+  background-size: 100%;
+  margin: 5px 5px 10px 40px;
+  background-repeat: no-repeat;
+};
+
+#mainmenu {
+  background: red;
+  width:100%;
+  z-index:100;
+}

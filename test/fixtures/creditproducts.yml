@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  id: 1
+  name: MyString
+  description: MyString
+  for_ind: false
+  for_comp: false
+  group_allowed: false
+  tranch_allowed: false
+  add_info: MyString
+  need_bail: false
+
+two:
+  id: 1
+  name: MyString
+  description: MyString
+  for_ind: false
+  for_comp: false
+  group_allowed: false
+  tranch_allowed: false
+  add_info: MyString
+  need_bail: false
