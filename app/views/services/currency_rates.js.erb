@@ -1,0 +1,5 @@
+$("#curr_rates_body").html(`<%=raw(render partial:"shared/curr_rates",locals:{market_rates_cash:@market_rates_cash,currencies:@currencies,market_rates_noncash:@market_rates_noncash,currency_rates:@currency_rates})%>`);
+$('ul.tabs').tabs();
+$("#modal_curr_rates").modal("open");
+
+

@@ -1,0 +1,64 @@
+<% OFFICES.sort_by{|x| x["BranchID"].to_i*10-(x["IsMainOffice"]?1:0)}.select{|x| x["BranchID"]==params["id"].to_i}.each do |absoffice|%>
+  <% if absoffice["IsMainOffice"] %>
+    <div class="card sticky-action">
+      <div class="card-image waves-effect waves-block waves-light">
+        <%=image_tag "fkb_karajorgo.JPG",class:"activator" %>
+      </div>
+      <div class="card-content">
+        <span class="card-title activator grey-text text-darken-4" style="margin:-10px;"><small><%= absoffice["Name"] %></small><i class="material-icons right">more_vert</i></span>
+        <p><a href="#">This is a link</a></p>
+      </div>
+      <div class="card-action">
+        <a class="modal_trigger" lat="42.86802" lng="74.6585">Показать на карте</a>
+      </div>
+      <div class="card-reveal">
+        <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
+        <p>Here is some more information about this product that is only revealed once clicked on.</p>
+      </div>
+    </div>
+  <% else %>
+    <div class="col s12 m7">
+      <div class="card horizontal">
+        <div class="card-image">
+    <img src="http://lorempixel.com/100/190/nature/6">
+        </div>
+        <div class="card-stacked">
+          <div class="card-content">
+            <p><%=absoffice["Name"]%></p>
+            <small><%=absoffice["Address"]%></small>
+          </div>
+          <div class="card-action">
+            <a class="modal_gmap_trigger" lat="55.742064" lng="37.632381">Показать на карте</a>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+<% end %>
+<div id="modal_gmap" class="modal modal-fixed-footer" style="width:90%">
+  <div class="modal-content">
+    <div id="spinner" class="valign-wrapper" style="height:100%;width:100%;position:absolute;z-index:1000;top:0;left:0;display:none;">
+      <div class="valign center" style="width:100%;">
+        <div class="preloader-wrapper active">
+
+          <div class="spinner-layer spinner-red-only" style="z-index:1001;">
+            <div class="circle-clipper left">
+              <div class="circle"></div>
+            </div><div class="gap-patch">
+              <div class="circle"></div>
+            </div><div class="circle-clipper right">
+              <div class="circle"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="map" style="height:115%;margin:-20px;">
+    </div>
+  </div>
+  <div class="modal-footer">
+    <a class="modal-action modal-close waves-effect waves-green btn-flat ">Закрыть</a>
+  </div>
+</div>
+<br/>

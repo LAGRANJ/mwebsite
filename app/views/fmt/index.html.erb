@@ -1,0 +1,65 @@
+<div id="fmt_details" class="modal modal-fixed-footer">
+  <div class="modal-content" style="padding:2px;">
+    <%= image_tag"zk.png",style:"width:80px;",id:"fmt_image"%>
+    <div id="fmt_body">
+      <ul id="fmt_details_collapsible" class="collapsible" data-collapsible="accordion">
+        <li>
+          <div class="collapsible-header active"><i class="material-icons">play_arrow</i>Комиссия</div>
+          <div id="fmt_commission" class="collapsible-body paddmarg">от 0.1%</div>
+        </li>
+        <li>
+          <div class="collapsible-header"><i class="material-icons">play_arrow</i>Валюта отправки</div>
+          <div id="fmt_currencies" class="collapsible-body paddmarg">
+          </div>
+        </li>
+        <li>
+          <div class="collapsible-header"><i class="material-icons">play_arrow</i>Страны назначения</div>
+          <div id="fmt_countries" class="collapsible-body paddmarg"></div>
+        </li>
+        <li>
+          <div class="collapsible-header"><i class="material-icons">play_arrow</i>Макс.сумма перевода</div>
+          <div id="fmt_limits" class="collapsible-body paddmarg"></div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <a class="modal-action modal-close waves-effect waves-green btn-flat ">Закрыть</a>
+  </div>
+</div>
+<div class="row">
+  <div class="col s12">
+    <h5 class='header'>Денежные переводы</h5>
+    <div class="carousel" style="height:300px;">
+      <%@fmts.each do |fmt|%>
+        <div class="carousel-item" href="https://koronapay.com">
+          <div class="card-panel grey lighten-5 z-depth-1">
+            <%=image_tag fmt.image%>
+            <div class="fmt_carousel_body">
+              <small><p><%= fmt.commissions%></p></small>
+              <%=link_to "подробнее","javascript:void(0)",transfer_id:fmt.id,class:"fmt_details"%>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+<hr>
+<div class="row">
+  <div class="col s12">
+    <div class="card">
+      <div class="card-image waves-effect waves-block waves-light">
+        <%= image_tag "swift2.jpg"%>
+      </div>
+      <div class="card-content">
+        <span class="card-title activator grey-text text-darken-4">Переводы SWIFT<i class="material-icons right">more_vert</i></span>
+        <p><a href="#">This is a link</a></p>
+      </div>
+      <div class="card-reveal">
+        <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
+        <p>Here is some more information about this product that is only revealed once clicked on.</p>
+      </div>
+    </div>
+  </div>
+</div>

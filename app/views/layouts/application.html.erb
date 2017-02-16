@@ -7,33 +7,112 @@
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script async defer
+                                                                        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBKcSK9mvFfhn18QsS__ADNICzGzSxuFS8">
+    </script>
   </head>
-
   <body>
-    <a href='/' class="mainlogo">123</a>
-    <div id='mainmenu'>
-      <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
+    <div id="modal_curr_rates" class="modal bottom-sheet" style="max-height:100%;">
+      <div class="modal-content" id="curr_rates_body" style="margin:-20px;">
+      </div>
+      <div class="modal-footer">
+        <a class="modal-action modal-close waves-effect waves-green btn-flat ">Закрыть</a>
+      </div>
+    </div>
+    <a href='/' class="mainlogo"></a>
+    <div id='mainmenu' class="red darken-1">
+      <a data-activates="slide-out" class="button-collapse"><i class="material-icons white-text text-white">menu</i></a>
+      <div class="infodesk"><strong><small>
+            0312 443-443, 0312 330-333</small></strong>
+      </div>
+      <div class="infodesk">
+        <i class="material-icons">call</i>
+      </div>
     </div>
 
     <ul id="slide-out" class="side-nav">
-      <li><div class="userView">
-          <div class="background">
-            <img src="images/office.jpg">
-          </div>
-          <a href="#!user"><img class="circle" src="images/yuna.jpg"></a>
-          <a href="#!name"><span class="white-text name">John Doe</span></a>
-          <a href="#!email"><span class="white-text email">jdandturk@gmail.com</span></a>
-        </div></li>
-        <li><a href="#!"><i class="material-icons">cloud</i>First Link With Icon</a></li>
-        <li><a href="#!">Second Link</a></li>
-        <li><div class="divider"></div></li>
-        <li><a class="subheader">Subheader</a></li>
-        <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
-    </ul>
-    <div class="container">
-      <div class="row">
-        <%= yield %>
+      <div class="background">
+        <a href='/' class="mainlogo"></a>
       </div>
+      <ul class="collapsible" data-collapsible="accordion" style="margin-left:10px;">
+        <li>
+          <div class="collapsible-header waves-effect waves-teal"><i class="material-icons black-text">supervisor_account</i>Физ.лицам</div>
+          <div class="collapsible-body">
+            <ul>
+              <li><a hred="#">Кредиты</a></li>
+              <li><a hred="#">Депозиты</a></li>
+              <li><a hred="#">Денежнае переводы</a></li>
+              <li><a hred="#">Карта Элкарт</a></li>
+              <li><a href="#">Сейфовые ячейки</a></li>
+            </ul></div>
+        </li>
+        <li>
+          <div class="collapsible-header"><i class="material-icons">business</i>Юр.лицам</div>
+          <div class="collapsible-body">
+            <ul>
+              <li><a hred="#">Кредиты</a></li>
+              <li><a hred="#">Депозиты</a></li>
+              <li><a hred="#">Денежные переводы</a></li>
+              <li><a href="#">Сейфовые ячейки</a></li>
+            </ul>
+          </div>
+        </li>
+        <li>
+          <div class="collapsible-header"><i class="material-icons red-text text-darken-4">business</i>О Банке</div>
+          <div class="collapsible-body">
+            <ul>
+              <li><a hred="#">Миссия</a></li>
+              <li><a hred="#">Корреспондентская сеть</a></li>
+              <li><a hred="#">Правление</a></li>
+              <li><a hred="#">Совет директоров</a></li>
+              <li><a hred="#">Акционеры</a></li>
+            </ul>
+          </div>
+        </li>
+
+        <li>
+          <div class="collapsible-header waves-effect waves-teal"><i class="material-icons black-text">place</i>Филиалы и сберкассы</div>
+          <div class="collapsible-body">
+            <ul>
+              <% OFFICES.select{|x| x["IsMainOffice"]}.each do |office|%>
+                <li><%= link_to office["ShortName"], branches_show_path(office["BranchID"]),data:{turbolinks: false}%></li>
+              <% end %>
+            </ul>
+          </div>
+        </li>
+        <li>
+          <div id="show_curr_rates_trigger" class="collapsible-header waves-effect waves-teal red-text text-darken-4"><i class="material-icons">swap_horiz</i>Курсы валют</div>
+        </li>
+        <li>
+          <div class="collapsible-header waves-effect waves-teal"><i class="material-icons black-text">phonelink_lock</i>Интернет банкинг</div>
+        </li>
+        <li>
+          <div class="collapsible-header waves-effect waves-teal"><i class="material-icons black-text">store</i>Реал.залогового имущ.</div>
+        </li>
+        <li>
+          <div class="collapsible-header waves-effect waves-teal"><i class="material-icons yellow-text text-darken-2">star</i>Акции</div>
+        </li>
+
+        <li>
+          <div class="collapsible-header waves-effect waves-teal"><i class="material-icons black-text">new_releases</i>Новости</div>
+        </li>
+      </ul>
+    </ul>
+    <div class="fixed-action-btn" style="bottom:10px;right:7px">
+      <a class="btn-floating red">
+        <span style="padding-left:10px;">RU</span>
+      </a>
+      <ul>
+        <li><a href="#" class="btn-floating green"><i class="material-icons">publish</i></a></li>
+        <li><a href="#" class="btn-floating blue"><span style="padding-left:1px;">EN</span></a>
+        </li>
+        <li><a href="#" class="btn-floating blue"><span style="padding-left:1px;">KG</span></a>
+        </li>
+      </ul>
+    </div>
+    <%= yield %>
+    <div id="footer" class="red darken-1 white-text" style="padding:5px 0px 5px 5px;">
+      © 2008 ОАО «ФинансКредитБанк КАБ»
     </div>
   </body>
 </html>

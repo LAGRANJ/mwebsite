@@ -1,0 +1,6 @@
+<% fmt = Fmt.find(params["id"].to_i)%>
+$("#fmt_commission").html('<%=raw(fmt.commissions)%>');
+$("#fmt_countries").text('<%=fmt.countries%>');
+$("#fmt_currencies").text('<%=fmt.currencies%>');
+$("#fmt_limits").text('<%=fmt.limits%>');
+$("#fmt_image").attr("src",'<%=image_url(fmt.image)%>');

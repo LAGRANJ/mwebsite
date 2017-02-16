@@ -1,0 +1,39 @@
+//= require jquery
+//= require turbolinks
+//= require materialize-sprockets
+//= require materialize/extras/nouislider
+//= require branches
+//= require fmt
+var loaded = function(){
+  $(".button-collapse").sideNav();
+  $('.collapsible').collapsible();
+  //  $('.carousel').carousel();
+  $('#mainmenu').pushpin({
+    top: 70,
+    bottom: 100000,
+    offset: 0
+  });
+  $('.slider').slider({indicators:false});
+  $('.carousel.carousel-slider').carousel({fullWidth: true});
+  $('.collapsible').collapsible();
+    $("#modal_curr_rates").modal();
+  $("#show_curr_rates_trigger").click(function(){
+    $("#modal_curr_rates").modal("open");
+
+
+    $.ajax({
+      <% url = Mwebsite::Application.routes.url_helpers %>
+        url:"<%=url.currency_rates_path()%>",
+        method: 'get',
+        dataType: "script",
+        data:{
+          id:$(this).attr("transfer_id")
+        },
+        success: function(_d,_s){},
+        error: function(){}
+    });
+  });
+}
+$(document).ready(loaded);
+$(document).on('page:load', loaded)
+$(document).on("turbolinks:load", loaded)

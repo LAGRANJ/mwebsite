@@ -1,0 +1,23 @@
+var loaded = function() {
+  $(".carousel").carousel();
+}
+$(document).ready(loaded);
+$(document).on('page:load', loaded);
+$(document).on("turbolinks:load", loaded);
+$(document).on("click","a.fmt_details",function(){
+  $.ajax({
+    <% url = Mwebsite::Application.routes.url_helpers %>
+      url:"<%=url.fmt_show_path()%>",
+    method: 'get',
+    dataType: "script",
+    data:{
+      id:$(this).attr("transfer_id")
+    },
+    success: function(_d,_s){},
+    error: function(){}
+  });
+
+  $('#fmt_details').modal('open');
+  $('#fmt_details_collapsible').collapsible();
+
+});

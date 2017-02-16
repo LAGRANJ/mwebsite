@@ -1,0 +1,2 @@
+class Fmt < ApplicationRecord
+end
